@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODOLIST UI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dark-mode">
+<header>
+    <div class="header-left">
+        <h1>TODOLIST</h1>
+        <p id="current-date">Fetching date...</p>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+        <i class="fa-solid fa-sun"></i>
+    </button>
+</header>
+
+<main>
+    <section class="glass-panel input-card" id="input-card">
+        <div class="input-collapsed" id="input-trigger">
+            <i class="fa-solid fa-plus input-icon"></i>
+            <span class="input-placeholder">Add a new task...</span>
+        </div>
+        
+        <form class="input-expanded-content" id="task-form">
+            <button type="button" class="btn-close-input" id="close-input"><i class="fa-solid fa-xmark"></i></button>
+            <div class="form-group">
+                <input type="text" id="task-title" placeholder="Task Title (Required)" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <textarea id="task-desc" rows="2" placeholder="Description (Optional)"></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" id="task-tags" placeholder="Tags (comma separated)">
+                </div>
+                <div class="form-group">
+                    <select id="task-priority">
+                        <option value="low">Low Priority</option>
+                        <option value="medium">Medium Priority</option>
+                        <option value="high">High Priority</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Add Task</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="controls-bar">
+        <div class="search-wrapper glass-panel" style="border-radius: var(--radius-pill); padding: 0;">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" class="search-input" id="search-input" placeholder="Search tasks...">
+        </div>
+        
+        <div class="filter-tags" id="status-filters">
+            <span class="chip active" data-filter="all">All</span>
+            <span class="chip" data-filter="active">Active</span>
+            <span class="chip" data-filter="completed">Completed</span>
+        </div>
+    </section>
+
+    <section class="filter-tags" id="tag-cloud">
+        </section>
+
+    <ul class="task-list" id="task-list">
+        </ul>
+</main>
+
+<footer>
+    <span id="task-stats">0 tasks remaining</span>
+    <button class="clear-btn" id="clear-completed">Clear Completed</button>
+</footer>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
